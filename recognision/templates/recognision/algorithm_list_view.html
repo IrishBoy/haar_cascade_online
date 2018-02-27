@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}My algorithms{% endblock %}
+{% block content %}
+    {% if object_list %}
+        <table class="table">
+            <tr>
+                <th>Algorithm name</th>
+                <th>status</th>
+                <th></th>
+            </tr>
+            {% for object in object_list %}
+                <tr>
+                    <td>{{ object.name }}</td>
+                    <td>{{ object.status }}</td>
+                    {% if object.xml_file %}
+                        <td><a href="{{ object.xml_file.url }}">xml file</a></td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <H3>You don't have your algorithms</H3>
+    {% endif %}
+{% endblock %}

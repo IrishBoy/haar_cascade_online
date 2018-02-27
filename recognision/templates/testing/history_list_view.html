@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}History{% endblock %}
+{% block content %}
+    {% if object_list %}
+        <table class="table">
+            <tr>
+                <th>Project name</th>
+                <th>Algorithm</th>
+                <th>Created</th>
+                <th>Status</th>
+                <th>Input_image</th>
+                <th>Output_image</th>
+            </tr>
+            {% for object in object_list %}
+                <tr>
+                    <td>{{ object.name }}</td>
+                    <td>{{ object.algorithm }}</td>
+                    <td>{{ object.created }}</td>
+                    <td>{{ object.status }}</td>
+                    <td><a href="{{ object.input_image.url }}">input image</a></td>
+                    {% if object.output_image %}
+                        <td><a href="{{ object.output_image.url }}">output image</a></td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <H3>You don't have your any tests</H3>
+    {% endif %}
+{% endblock %}
